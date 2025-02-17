@@ -1,0 +1,4 @@
+# excluir arquivos log
+*.log
+# excluir arquivos de dados
+*.cpython-312.pyc
