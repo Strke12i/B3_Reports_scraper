@@ -7,6 +7,7 @@ app = FastAPI()
 
 class FinancialData(BaseModel):
     company_name: str
+    code_cvm: int
     data: dict  # Dados financeiros processados
 
 @app.post("/insert-data")
@@ -19,7 +20,7 @@ async def insert_financial_data(financial_data: FinancialData):
         print(financial_data.company_name)
 
         # Insere os dados no banco de dados
-        insert_data(session, financial_data.data, financial_data.company_name)
+        insert_data(session, financial_data.data, financial_data.company_name, int(financial_data.code_cvm))
         return {"message": "Dados inseridos com sucesso!"}
     except Exception as e:
         print(f"Erro ao inserir dados no banco de dados: {e}")
